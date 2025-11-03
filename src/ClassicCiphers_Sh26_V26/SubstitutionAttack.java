@@ -137,8 +137,8 @@ public class SubstitutionAttack {
         String recovered = decrypt(cipher, resultKey);
 
         int correct = correctLetters(resultKey, secretKey);
-        System.out.printf("\nLitere corecte: %d / 26 (%.2f%%)\n", correct, correct * 100.0 / 26);
-        System.out.println("\ntext decriptat:\n" +
+        System.out.printf("\nCorrect letters: %d / 26 (%.2f%%)\n", correct, correct * 100.0 / 26);
+        System.out.println("\nDecrypted text:\n" +
                 recovered.substring(0, Math.min(400, recovered.length())) + (recovered.length() > 400 ? "..." : ""));
     }
 }
