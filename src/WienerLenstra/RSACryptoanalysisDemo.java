@@ -7,9 +7,8 @@ public class RSACryptoanalysisDemo {
 
     static SecureRandom rnd = new SecureRandom();
 
-    // =========================
+
     // MAIN
-    // =========================
     public static void main(String[] args) {
 
         System.out.println("=== RSA CRYPTOANALYSIS DEMO ===\n");
@@ -23,9 +22,7 @@ public class RSACryptoanalysisDemo {
         System.out.println("\nPrivate key:");
         System.out.println("d = " + key.d);
 
-        // -------------------------
         // WIENER ATTACK
-        // -------------------------
         System.out.println("\n=== WIENER ATTACK ===");
         BigInteger recoveredD = wienerAttack(key.e, key.n);
 
@@ -35,9 +32,7 @@ public class RSACryptoanalysisDemo {
             System.out.println("Wiener attack failed");
         }
 
-        // -------------------------
         // LENSTRA ATTACK
-        // -------------------------
         System.out.println("\n=== LENSTRA ATTACK (CRT FAULT) ===");
 
         BigInteger message = new BigInteger("42");
@@ -51,16 +46,12 @@ public class RSACryptoanalysisDemo {
         System.out.println("Recovered q = " + q);
     }
 
-    // =========================
     // RSA KEY
-    // =========================
     static class RSAKey {
         BigInteger p, q, n, phi, e, d;
     }
 
-    // =========================
     // WEAK RSA GENERATION
-    // =========================
     static RSAKey generateWeakRSA(int bits) {
         RSAKey k = new RSAKey();
 
@@ -78,9 +69,7 @@ public class RSACryptoanalysisDemo {
         return k;
     }
 
-    // =========================
     // WIENER ATTACK
-    // =========================
     static BigInteger wienerAttack(BigInteger e, BigInteger n) {
         List<BigInteger> cf = continuedFraction(e, n);
         List<BigInteger[]> conv = convergents(cf);
@@ -146,9 +135,7 @@ public class RSACryptoanalysisDemo {
         return r;
     }
 
-    // =========================
     // CRT DECRYPTION (LENSTRA)
-    // =========================
     static BigInteger crtDecrypt(BigInteger m, RSAKey k, boolean fault) {
         BigInteger dp = k.d.mod(k.p.subtract(BigInteger.ONE));
         BigInteger dq = k.d.mod(k.q.subtract(BigInteger.ONE));
@@ -157,7 +144,6 @@ public class RSACryptoanalysisDemo {
         BigInteger mq = m.modPow(dq, k.q);
 
         if (fault) {
-            // simulate hardware fault
             mp = mp.add(BigInteger.ONE).mod(k.p);
         }
 
