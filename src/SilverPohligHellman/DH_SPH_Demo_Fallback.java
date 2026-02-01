@@ -4,15 +4,6 @@ import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.*;
 
-/**
- * SilverPohligHellman.DH_SPH_Demo_Fallback.java
- *
- * - BSGS + Silver-Pohlig-Hellman
- * - If BSGS returns null for small q, fallback to brute-force search over [0..q-1]
- * - Robust diagnostics and generator selection
- *
- * Educational/demo only.
- */
 public class DH_SPH_Demo_Fallback {
     static final SecureRandom rnd = new SecureRandom();
 
